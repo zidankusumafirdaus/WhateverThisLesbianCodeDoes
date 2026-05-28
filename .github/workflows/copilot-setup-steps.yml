@@ -25,5 +25,17 @@ jobs:
           cache: "pip"
           cache-dependency-path: "Backend/requirements.txt"
 
-      - name: Install backend dependencies
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
+          cache: "npm"
+          cache-dependency-path: "FrontEnd/package-lock.json"
+
+      - name: Install backend dependencies (Flask)
         run: pip install -r Backend/requirements.txt
+        working-directory: Backend
+
+      - name: Install frontend dependencies (React + TailwindCSS)
+        run: npm install
+        working-directory: FrontEnd
