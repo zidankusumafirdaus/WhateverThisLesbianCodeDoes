@@ -9,6 +9,18 @@
             "value": "http://localhost:5000"
         },
         {
+            "key": "projectId",
+            "value": "1"
+        },
+        {
+            "key": "iconId",
+            "value": "1"
+        },
+        {
+            "key": "iconFilename",
+            "value": "education/book.png"
+        },
+        {
             "key": "username",
             "value": "admin"
         },
@@ -59,7 +71,10 @@
                                 "exec": [
                                     "const json = pm.response.json();",
                                     "const token = json?.data?.access_token;",
-                                    "if (token) { pm.collectionVariables.set('token', token); }"
+                                    "if (token) {",
+                                    "  pm.collectionVariables.set('token', token);",
+                                    "  if (pm.environment) { pm.environment.set('token', token); }",
+                                    "}"
                                 ]
                             }
                         }
@@ -224,6 +239,24 @@
                                 "api",
                                 "icons",
                                 "{{iconId}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Icon Display",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/api/icons/display/{{iconFilename}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "icons",
+                                "display",
+                                "{{iconFilename}}"
                             ]
                         }
                     }

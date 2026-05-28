@@ -16,6 +16,7 @@ Create `.env` with database connection:
 SQLALCHEMY_DATABASE_URL=mysql+pymysql://USER:PASSWORD@HOST:3306/DBNAME
 JWT_SECRET_KEY=your_jwt_secret
 JWT_ACCESS_TOKEN_EXPIRES_MINUTES=60
+CORS_ORIGINS=http://localhost:5173
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=strongpassword
 ```

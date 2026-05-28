@@ -4,6 +4,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+def _parse_cors_origins(value):
+    if not value:
+        return ["http://localhost:5173"]
+    if value.strip() == "*":
+        return "*"
+    return [origin.strip() for origin in value.split(",") if origin.strip()]
+
 class Config:
     # Flask / JWT
     SECRET_KEY = os.getenv("SECRET_KEY")
@@ -12,3 +19,4 @@ class Config:
 
     # database
     SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL")
+    CORS_ORIGINS = _parse_cors_origins(os.getenv("CORS_ORIGINS"))
